@@ -116,13 +116,17 @@ class StackedBarChart extends AbstractChart {
       data,
       withHorizontalLabels = true,
       withVerticalLabels = true,
+      verticalLabelRotation = 0,
+      horizontalLabelRotation = 0,
       segments = 4
     } = this.props;
     const { decimalPlaces } = this.props.chartConfig;
     const { borderRadius = 0 } = style;
     const config = {
       width,
-      height
+      height,
+      verticalLabelRotation,
+      horizontalLabelRotation
     };
     let border = 0;
     for (let i = 0; i < data.data.length; i++) {

@@ -284,6 +284,15 @@ export interface StackedBarChartProps {
    * The number of horizontal lines
    */
   segments?: number;
+
+  /**
+   * Rotation angle of the horizontal labels - default 0 (degrees).
+   */
+  horizontalLabelRotation?: number;
+  /**
+   * Rotation angle of the vertical labels - default 0 (degrees).
+   */
+  verticalLabelRotation?: number;
 }
 
 export class StackedBarChart extends React.Component<StackedBarChartProps> {}
