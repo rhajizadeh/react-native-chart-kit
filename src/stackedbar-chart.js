@@ -182,8 +182,7 @@ class StackedBarChart extends AbstractChart {
               border,
               colors: this.props.data.barColors,
               paddingTop,
-              paddingRight: paddingRight + 20,
-              stackedBar
+              paddingRight: paddingRight + 20
             })}
           </G>
           {data.legend &&
