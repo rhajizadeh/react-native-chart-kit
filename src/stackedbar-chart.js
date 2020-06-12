@@ -177,7 +177,7 @@ class StackedBarChart extends AbstractChart {
                   paddingRight: paddingRight + 28,
                   stackedBar,
                   paddingTop,
-                  horizontalOffset: barWidth
+                  horizontalOffset: this.getBarWidth()
                 })
               : null}
           </G>
