@@ -158,7 +158,6 @@ class AbstractChart extends Component {
       paddingRight,
       paddingTop,
       horizontalOffset = 0,
-      stackedBar = false,
       verticalLabelRotation = 0,
       formatXLabel = xLabel => xLabel
     } = config;
@@ -169,9 +168,6 @@ class AbstractChart extends Component {
     } = this.props;
     const fontSize = 12;
     let fac = 1;
-    if (stackedBar) {
-      fac = 0.71;
-    }
     return labels.map((label, i) => {
       if (hidePointsAtIndex.includes(i)) {
         return null;
@@ -283,28 +279,11 @@ class AbstractChart extends Component {
             stopOpacity={toOpacity}
           />
         </LinearGradient>
-        {
-          useShadowColorFromDataset ? (
-            data.map((dataset, index) => (
-              <LinearGradient
-                id={`fillShadowGradient_${index}`}
-                key={`${index}`}
-                x1={0}
-                y1={0}
-                x2={0}
-                y2={height}
-              >
-                <Stop
-                  offset="0"
-                  stopColor={dataset.color ? dataset.color() : fillShadowGradient}
-                  stopOpacity={fillShadowGradientOpacity}
-                />
-                <Stop offset="1" stopColor={dataset.color ? dataset.color(fillShadowGradientOpacity) : fillShadowGradient} stopOpacity="0" />
-              </LinearGradient>
-            ))
-          ) : (
+        {useShadowColorFromDataset ? (
+          data.map((dataset, index) => (
             <LinearGradient
-              id="fillShadowGradient"
+              id={`fillShadowGradient_${index}`}
+              key={`${index}`}
               x1={0}
               y1={0}
               x2={0}
@@ -312,13 +291,36 @@ class AbstractChart extends Component {
             >
               <Stop
                 offset="0"
-                stopColor={fillShadowGradient}
+                stopColor={dataset.color ? dataset.color() : fillShadowGradient}
                 stopOpacity={fillShadowGradientOpacity}
               />
-              <Stop offset="1" stopColor={fillShadowGradient} stopOpacity="0" />
+              <Stop
+                offset="1"
+                stopColor={
+                  dataset.color
+                    ? dataset.color(fillShadowGradientOpacity)
+                    : fillShadowGradient
+                }
+                stopOpacity="0"
+              />
             </LinearGradient>
-          )
-        }
+          ))
+        ) : (
+          <LinearGradient
+            id="fillShadowGradient"
+            x1={0}
+            y1={0}
+            x2={0}
+            y2={height}
+          >
+            <Stop
+              offset="0"
+              stopColor={fillShadowGradient}
+              stopOpacity={fillShadowGradientOpacity}
+            />
+            <Stop offset="1" stopColor={fillShadowGradient} stopOpacity="0" />
+          </LinearGradient>
+        )}
       </Defs>
     );
   };

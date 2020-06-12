@@ -31,8 +31,7 @@ class StackedBarChart extends AbstractChart {
       paddingTop,
       paddingRight,
       border,
-      colors,
-      stackedBar = false
+      colors
     } = config;
     return data.map((x, i) => {
       const barWidth = this.getBarWidth() * this.getBarPercentage();
@@ -40,9 +39,6 @@ class StackedBarChart extends AbstractChart {
       let h = 0;
       let st = paddingTop;
       let fac = 1;
-      if (stackedBar) {
-        fac = 0.7;
-      }
       for (let z = 0; z < x.length; z++) {
         h = (height - 55) * (x[z] / border);
         const y = (height / 4) * 3 - h + st;
@@ -135,7 +131,6 @@ class StackedBarChart extends AbstractChart {
         border = actual;
       }
     }
-    var stackedBar = data.legend && data.legend.length == 0 ? false : true;
     return (
       <View style={style}>
         <Svg height={height} width={width}>
@@ -175,7 +170,6 @@ class StackedBarChart extends AbstractChart {
                   ...config,
                   labels: data.labels,
                   paddingRight: paddingRight + 28,
-                  stackedBar,
                   paddingTop,
                   horizontalOffset: this.getBarWidth()
                 })
