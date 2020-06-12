@@ -372,6 +372,10 @@ export interface ChartConfig {
   barPercentage?: number;
   barRadius?: number;
   /**
+   * Defines the width for each bar
+   */
+  barWidth?: number;
+  /**
    * Override styles of the background lines, refer to react-native-svg's Line documentation
    */
   propsForBackgroundLines?: object;
